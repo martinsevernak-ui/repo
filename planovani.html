@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#102a43">
+    <meta name="description" content="Plánujte své úspory a vytvářejte si zdravé finanční návyky.">
+    <link rel="icon" type="image/png" href="finance-favicon.png">
+    <title>Finance Alpha — plánování</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body data-page="planning">
+    <header class="hlavicka">
+        <a class="znacka" href="index.html" aria-label="Finance Alpha — přehled">
+            <img class="znacka-ikona" src="finance-favicon.png" alt="">
+            <span>Finance<span class="znacka-tecka"> Alpha</span></span>
+        </a>
+        <nav aria-label="Hlavní navigace">
+            <a href="index.html">Přehled</a>
+            <a href="transakce.html">Transakce</a>
+            <a class="aktivni" href="planovani.html" aria-current="page">Plánování</a>
+            <a href="formular.html">Formulář</a>
+        </nav>
+        <a class="tlacitko tlacitko-male" href="#cil">Nastavit cíl <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main class="obsah-stranky-multi">
+        <section class="stranka-zahlavi">
+            <p class="nadpis-maly">PLÁNUJTE S VĚTŠÍ JISTOTOU</p>
+            <h1>Vaše budoucnost začíná plánem.</h1>
+            <p>Dejte svým penězům směr. Nastavte si cíl, sledujte svůj pokrok a budujte zdravé finanční návyky.</p>
+        </section>
+
+        <section class="planovani-mrizka" id="cil">
+            <article class="panel cil-panel" aria-labelledby="nadpis-uspory">
+                <div class="panel-zahlavi">
+                    <div><h2 id="nadpis-uspory">Cíl vašich úspor</h2><p>Váš zůstatek za aktuální měsíc proti cíli</p></div>
+                    <span class="panel-znak panel-znak-zelena" aria-hidden="true">✳</span>
+                </div>
+                <div class="cil-cisla">
+                    <strong id="cil-aktualne">0 Kč</strong>
+                    <span>z cíle <span id="cil-celkem">50 000 Kč</span></span>
+                </div>
+                <div class="cil-pruh" role="progressbar" aria-label="Plnění cíle úspor" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <span id="cil-pruh"></span>
+                </div>
+                <p class="cil-zprava" id="cil-zprava"></p>
+                <form id="formular-cile" class="formular-cile">
+                    <label for="cil-vstup">Můj cíl úspor</label>
+                    <div class="cil-vstup-radek">
+                        <span class="vstup-suffix"><input id="cil-vstup" name="cil" type="number" min="1" step="1000" value="50000" required><span>Kč</span></span>
+                        <button class="tlacitko tlacitko-male" type="submit">Uložit cíl</button>
+                    </div>
+                    <p id="stav-cile" class="formular-pozn" role="status" aria-live="polite"></p>
+                </form>
+                <div class="tip-rezerva">
+                    <span aria-hidden="true">i</span>
+                    <p>Pravidelné odkládání i menší částky vám může pomoci vytvořit rezervu na nečekané výdaje.</p>
+                </div>
+            </article>
+
+            <aside class="planovaci-tip">
+                <p class="nadpis-maly">MALÉ KROKY, VELKÝ ROZDÍL</p>
+                <h2>Začněte jedním dobrým návykem.</h2>
+                <p>Finanční plán nemusí být složitý. Důležité je, aby odpovídal vašemu životu a abyste se k němu pravidelně vraceli.</p>
+                <a href="transakce.html" class="tlacitko">Zkontrolovat transakce <span aria-hidden="true">→</span></a>
+            </aside>
+        </section>
+
+        <section class="tipy-planovani" aria-labelledby="nadpis-navyky">
+            <div class="nastroje-zahlavi">
+                <p class="nadpis-maly">JEDNODUŠE A PRAKTICKY</p>
+                <h2 id="nadpis-navyky">Tři kroky ke zdravějším financím.</h2>
+            </div>
+            <div class="prehled-mrizka">
+                <article class="info-karta">
+                    <span class="tip-cislo">01</span>
+                    <h3>Nejdřív si vytvořte přehled</h3>
+                    <p>Zapisujte si příjmy a výdaje. Skutečná čísla vám ukážou, na co odchází nejvíce peněz.</p>
+                </article>
+                <article class="info-karta">
+                    <span class="tip-cislo">02</span>
+                    <h3>Odkládejte pravidelně</h3>
+                    <p>Nastavte si částku, kterou zvládnete odložit každý měsíc, a zahrňte ji do svého plánu.</p>
+                </article>
+                <article class="info-karta">
+                    <span class="tip-cislo">03</span>
+                    <h3>Plán upravujte podle sebe</h3>
+                    <p>Když se změní vaše situace, změňte také plán. Rozpočet má pomáhat vám, ne vás omezovat.</p>
+                </article>
+            </div>
+        </section>
+        <p class="soukromi planovani-soukromi">Vaše údaje zůstávají v tomto prohlížeči a nejsou odesílány na server.</p>
+        <p class="formular-pozn formular-chyba" id="stav-uloziste" role="status" aria-live="polite"></p>
+    </main>
+
+    <footer class="paticka">
+        <a class="znacka znacka-paticka" href="index.html"><img class="znacka-ikona" src="finance-favicon.png" alt=""><span>Finance<span class="znacka-tecka"> Alpha</span></span></a>
+        <p>Jednoduše a srozumitelně o vašich penězích.</p>
+        <span>© 2026 Finance Alpha</span>
+    </footer>
+    <script src="finance.js" defer></script>
+</body>
+</html>

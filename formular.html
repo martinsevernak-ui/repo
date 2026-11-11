@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#102a43">
+    <meta name="description" content="Ukázkový formulář s běžnými HTML vstupními poli.">
+    <link rel="icon" type="image/png" href="finance-favicon.png">
+    <title>Finance Alpha — ukázkový formulář</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <header class="hlavicka">
+        <a class="znacka" href="index.html" aria-label="Finance Alpha — přehled">
+            <img class="znacka-ikona" src="finance-favicon.png" alt="">
+            <span>Finance<span class="znacka-tecka"> Alpha</span></span>
+        </a>
+        <nav aria-label="Hlavní navigace">
+            <a href="index.html">Přehled</a>
+            <a href="transakce.html">Transakce</a>
+            <a href="planovani.html">Plánování</a>
+            <a class="aktivni" href="formular.html" aria-current="page">Formulář</a>
+        </nav>
+        <a class="tlacitko tlacitko-male" href="#ukazkovy-formular">Vyplnit formulář <span aria-hidden="true">↓</span></a>
+    </header>
+
+    <main class="obsah-stranky-multi">
+        <section class="stranka-zahlavi">
+            <p class="nadpis-maly">HTML FORMULÁŘE V PRAXI</p>
+            <h1>Ukázkový formulář.</h1>
+            <p>Jednoduchá ukázka různých typů polí. Formulář nic neodesílá ani neukládá — slouží pouze k vyzkoušení.</p>
+        </section>
+
+        <section class="panel priklad-formulare" id="ukazkovy-formular" aria-labelledby="nadpis-formulare">
+            <div class="panel-zahlavi">
+                <div>
+                    <h2 id="nadpis-formulare">Příklad formuláře</h2>
+                    <p>Vyzkoušejte vyplnění základních údajů a výběr oblíbené barvy.</p>
+                </div>
+                <span class="panel-znak panel-znak-modry" aria-hidden="true">✎</span>
+            </div>
+
+            <form id="formular-ukazka" class="formular-ukazka">
+                <label for="jmeno-ukazka">Jméno
+                    <input id="jmeno-ukazka" name="jmeno" type="text" value="John Doe" autocomplete="name" required>
+                </label>
+                <label for="email-ukazka">E-mail
+                    <input id="email-ukazka" name="email" type="email" value="john@example.com" autocomplete="email" required>
+                </label>
+                <label for="heslo-ukazka">Heslo
+                    <input id="heslo-ukazka" name="heslo" type="password" placeholder="........." minlength="8" autocomplete="new-password" required>
+                </label>
+                <label for="vek-ukazka">Věk
+                    <input id="vek-ukazka" name="vek" type="number" min="1" max="120" value="25" required>
+                </label>
+                <label for="datum-ukazka">Datum
+                    <input id="datum-ukazka" name="datum" type="date" value="2025-06-09" required>
+                </label>
+                <label for="barva-ukazka">Oblíbená barva
+                    <span class="vyber-barvy">
+                        <input id="barva-ukazka" name="barva" type="color" value="#246bfe">
+                        <output id="kod-barvy" for="barva-ukazka">#246BFE</output>
+                    </span>
+                </label>
+
+                <fieldset class="ukazka-skupina">
+                    <legend>Pohlaví</legend>
+                    <div class="ukazka-volby">
+                        <label><input type="radio" name="pohlavi" value="muz" required checked> Muž</label>
+                        <label><input type="radio" name="pohlavi" value="zena"> Žena</label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="ukazka-skupina">
+                    <legend>Zájmy</legend>
+                    <div class="ukazka-volby">
+                        <label><input type="checkbox" name="zajmy" value="cteni"> Čtení</label>
+                        <label><input type="checkbox" name="zajmy" value="hudba" checked> Hudba</label>
+                        <label><input type="checkbox" name="zajmy" value="cestovani"> Cestování</label>
+                    </div>
+                </fieldset>
+
+                <label class="ukazka-plna" for="soubor-ukazka">Nahrát soubor <span class="nepovinne">(nepovinné)</span>
+                    <input id="soubor-ukazka" name="soubor" type="file">
+                </label>
+
+                <div class="ukazka-tlacitka">
+                    <button class="tlacitko" type="submit">Odeslat formulář <span aria-hidden="true">→</span></button>
+                    <button class="reset-transakce" type="reset">Vymazat formulář</button>
+                </div>
+                <p id="stav-ukazka-formulare" class="formular-pozn ukazka-plna" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+        <p class="soukromi">Ukázkový formulář je pouze demonstrační. Zadávejte jen testovací údaje — nic se neodesílá ani neukládá.</p>
+    </main>
+
+    <footer class="paticka">
+        <a class="znacka znacka-paticka" href="index.html"><img class="znacka-ikona" src="finance-favicon.png" alt=""><span>Finance<span class="znacka-tecka"> Alpha</span></span></a>
+        <p>Jednoduše a srozumitelně o vašich penězích.</p>
+        <span>© 2026 Finance Alpha</span>
+    </footer>
+    <script>
+        const ukazkovyFormular = document.getElementById('formular-ukazka');
+        const stavUkazka = document.getElementById('stav-ukazka-formulare');
+        const vyberBarvy = document.getElementById('barva-ukazka');
+        const kodBarvy = document.getElementById('kod-barvy');
+
+        function zobrazKodBarvy() {
+            kodBarvy.textContent = vyberBarvy.value.toUpperCase();
+        }
+
+        vyberBarvy.addEventListener('input', zobrazKodBarvy);
+        vyberBarvy.addEventListener('change', zobrazKodBarvy);
+
+        ukazkovyFormular.addEventListener('submit', (udalost) => {
+            udalost.preventDefault();
+            if (!ukazkovyFormular.reportValidity()) {
+                return;
+            }
+            const jmeno = new FormData(ukazkovyFormular).get('jmeno');
+            stavUkazka.textContent = `Děkujeme, ${jmeno}. Ukázkový formulář je správně vyplněný. Údaje se nikam neposílají.`;
+        });
+
+        ukazkovyFormular.addEventListener('reset', () => {
+            stavUkazka.textContent = 'Formulář byl vymazán.';
+            window.setTimeout(() => {
+                zobrazKodBarvy();
+            });
+        });
+    </script>
+</body>
+</html>

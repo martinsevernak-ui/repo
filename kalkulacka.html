@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osobní finance - Kalkulačka</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hlavicka">
+        <a href="index.html" class="logo-webu">
+            <img src="logo.png" alt="Logo">
+            <span>Finance Alpha</span>
+        </a>
+        <nav class="navigace">
+            <ul>
+                <li><a href="index.html">Domů</a></li>
+                <li><a href="sluzby.html">Služby</a></li>
+                <li><a href="o-nas.html">O nás</a></li>
+                <li><a href="kalkulacka.html" class="aktivni-stranka">Kalkulačka</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+                <li><a href="kontakt.html" class="btn-prihlasit">Přihlásit se</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div style="width: 100%; text-align: center;">
+            <h1 style="margin-bottom: 25px; text-shadow: 0 2px 10px rgba(0,0,0,0.4);">Aktuální finance</h1>
+
+            <div class="karta">
+                <img src="logo.png" alt="Finance logo" class="logo-karty">
+
+                <div class="popis">VAŠE FINANČNÍ KARTA</div>
+                <div class="podrobnosti">Finance - Projekt Alpha</div>
+                <div class="castka" id="zustatek">CZK 125,750.50</div>
+
+                <div class="statistika">
+                    <div class="stat-item">
+                        <div class="stat-label">Příjmy</div>
+                        <div class="stat-value prijem" id="prijmy">150 000 Kč</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Výdaje</div>
+                        <div class="stat-value vydaj" id="vydaj">24 250 Kč</div>
+                    </div>
+                </div>
+
+                <div class="formular">
+                    <input type="number" id="vstupCena" placeholder="Zadej částku (např. -500)" />
+                    <button class="tlacitko" onclick="pridatTransakci()">Přidat</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Osobní finance - Projekt Alpha. Všechna práva vyhrazena.</p>
+    </footer>
+
+    <script>
+        let aktualniZustatek = 125750.50;
+        let celkemPrijmy = 150000;
+        let celkemVydaje = 24250;
+
+        function pridatTransakci() {
+            const input = document.getElementById('vstupCena');
+            const hodnota = parseFloat(input.value);
+
+            if (isNaN(hodnota) || hodnota === 0) {
+                alert('Zadejte platnou nenulovou částku.');
+                return;
+            }
+
+            aktualniZustatek += hodnota;
+
+            if (hodnota > 0) {
+                celkemPrijmy += hodnota;
+            } else {
+                celkemVydaje += Math.abs(hodnota);
+            }
+
+            document.getElementById('zustatek').innerText = 'CZK ' + aktualniZustatek.toLocaleString('cs-CZ', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('prijmy').innerText = celkemPrijmy.toLocaleString('cs-CZ') + ' Kč';
+            document.getElementById('vydaj').innerText = celkemVydaje.toLocaleString('cs-CZ') + ' Kč';
+
+            input.value = '';
+        }
+    </script>
+
+</body>
+</html>

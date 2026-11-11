@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#102a43">
+    <meta name="description" content="Přehled osobních financí: příjmy, výdaje a transakce na jednom místě.">
+    <link rel="icon" type="image/png" href="finance-favicon.png">
+    <title>Finance Alpha — přehled</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body data-page="overview">
+    <header class="hlavicka">
+        <a class="znacka" href="index.html" aria-label="Finance Alpha — přehled">
+            <img class="znacka-ikona" src="finance-favicon.png" alt="">
+            <span>Finance<span class="znacka-tecka"> Alpha</span></span>
+        </a>
+        <nav aria-label="Hlavní navigace">
+            <a class="aktivni" href="index.html" aria-current="page">Přehled</a>
+            <a href="transakce.html">Transakce</a>
+            <a href="planovani.html">Plánování</a>
+            <a href="formular.html">Formulář</a>
+        </nav>
+        <a class="tlacitko tlacitko-male" href="transakce.html">Přidat záznam <span aria-hidden="true">＋</span></a>
+    </header>
+
+    <main>
+        <section class="uvod uvod-stranka">
+            <div class="uvod-text">
+                <p class="nadpis-maly"><span class="tecka-stavu"></span> OSOBNÍ FINANCE SROZUMITELNĚ</p>
+                <h1>Vaše peníze.<br><span>Jasný přehled.</span></h1>
+                <p class="uvod-popis">Příjmy, výdaje a zůstatek přehledně na jednom místě. Rozhodujte se o svých penězích s větší jistotou.</p>
+                <a class="tlacitko" href="#prehled">Zobrazit finanční přehled <span aria-hidden="true">↓</span></a>
+            </div>
+            <aside class="uvodni-karta" aria-label="Rychlé shrnutí financí">
+                <div class="karta-hlavicka">
+                    <div>
+                        <span class="karta-popisek">ZŮSTATEK TENTO MĚSÍC</span>
+                        <h2 id="uvodni-zustatek">Načítám…</h2>
+                    </div>
+                    <span class="karta-znak" aria-hidden="true">↗</span>
+                </div>
+                <p class="uvodni-karta-text" id="uvodni-shrnuti"></p>
+                <a href="transakce.html">Zobrazit transakce <span aria-hidden="true">→</span></a>
+            </aside>
+            <div class="uvod-dekorace dekorace-jedna" aria-hidden="true"></div>
+            <div class="uvod-dekorace dekorace-dva" aria-hidden="true"></div>
+        </section>
+
+        <section class="dashboard sekce" id="prehled" aria-labelledby="nadpis-prehled">
+            <div class="dashboard-zahlavi">
+                <div>
+                    <p class="nadpis-maly">VAŠE PENÍZE NA JEDNOM MÍSTĚ</p>
+                    <h2 id="nadpis-prehled">Finanční přehled</h2>
+                    <p id="mesic-popis"></p>
+                </div>
+                <label class="mesic-vyber">Zvolit měsíc
+                    <input type="month" id="mesic">
+                </label>
+            </div>
+            <div class="souhrn-mrizka" aria-label="Souhrn za vybraný měsíc">
+                <article class="souhrn-karta">
+                    <span class="souhrn-ikona souhrn-modra" aria-hidden="true">↗</span>
+                    <span class="souhrn-popisek">Příjmy</span>
+                    <strong id="prehled-prijmy">0 Kč</strong>
+                    <span class="souhrn-podtext">Za vybraný měsíc</span>
+                </article>
+                <article class="souhrn-karta">
+                    <span class="souhrn-ikona souhrn-oranzova" aria-hidden="true">↘</span>
+                    <span class="souhrn-popisek">Výdaje</span>
+                    <strong id="prehled-vydaje">0 Kč</strong>
+                    <span class="souhrn-podtext">Za vybraný měsíc</span>
+                </article>
+                <article class="souhrn-karta">
+                    <span class="souhrn-ikona souhrn-zelena" aria-hidden="true">＝</span>
+                    <span class="souhrn-popisek">Zůstatek</span>
+                    <strong id="prehled-zustatek">0 Kč</strong>
+                    <span class="souhrn-podtext" id="zbyva-popis">Příjmy minus výdaje</span>
+                </article>
+                <article class="souhrn-karta">
+                    <span class="souhrn-ikona souhrn-fialova" aria-hidden="true">✳</span>
+                    <span class="souhrn-popisek">Míra úspor</span>
+                    <strong id="prehled-uspory">0 %</strong>
+                    <span class="souhrn-podtext">Z příjmů za měsíc</span>
+                </article>
+            </div>
+            <div class="dashboard-dolni">
+                <section class="panel" aria-labelledby="nadpis-kategorie">
+                    <div class="panel-zahlavi">
+                        <div><h3 id="nadpis-kategorie">Kam odcházejí peníze</h3><p>Výdaje podle kategorií</p></div>
+                        <span class="panel-znak" aria-hidden="true">◉</span>
+                    </div>
+                    <div id="kategorie" class="kategorie-seznam"></div>
+                    <p class="prazdna-kategorie" id="prazdne-kategorie" hidden>Zatím tu nejsou žádné výdaje za tento měsíc.</p>
+                </section>
+                <section class="panel transakce-panel" aria-labelledby="nadpis-transakce">
+                    <div class="panel-zahlavi">
+                        <div><h3 id="nadpis-transakce">Poslední transakce</h3><p>Příjmy a výdaje za vybraný měsíc</p></div>
+                        <a href="transakce.html">Všechny <span aria-hidden="true">→</span></a>
+                    </div>
+                    <div class="transakce-seznam" id="transakce-seznam"></div>
+                    <p class="prazdne-transakce" id="prazdne-transakce" hidden>Žádné záznamy za vybraný měsíc. Přidejte první transakci.</p>
+                </section>
+            </div>
+            <p class="soukromi">Vaše údaje zůstávají v tomto prohlížeči a nejsou odesílány na server.</p>
+            <p class="formular-pozn formular-chyba" id="stav-uloziste" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <footer class="paticka">
+        <a class="znacka znacka-paticka" href="index.html"><img class="znacka-ikona" src="finance-favicon.png" alt=""><span>Finance<span class="znacka-tecka"> Alpha</span></span></a>
+        <p>Jednoduše a srozumitelně o vašich penězích.</p>
+        <span>© 2026 Finance Alpha</span>
+    </footer>
+    <script src="finance.js" defer></script>
+</body>
+</html>

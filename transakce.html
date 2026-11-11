@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#102a43">
+    <meta name="description" content="Přidávejte a spravujte své příjmy a výdaje v přehledu osobních financí.">
+    <link rel="icon" type="image/png" href="finance-favicon.png">
+    <title>Finance Alpha — transakce</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body data-page="transactions">
+    <header class="hlavicka">
+        <a class="znacka" href="index.html" aria-label="Finance Alpha — přehled">
+            <img class="znacka-ikona" src="finance-favicon.png" alt="">
+            <span>Finance<span class="znacka-tecka"> Alpha</span></span>
+        </a>
+        <nav aria-label="Hlavní navigace">
+            <a href="index.html">Přehled</a>
+            <a class="aktivni" href="transakce.html" aria-current="page">Transakce</a>
+            <a href="planovani.html">Plánování</a>
+            <a href="formular.html">Formulář</a>
+        </nav>
+        <a class="tlacitko tlacitko-male" href="#nova-transakce">Přidat záznam <span aria-hidden="true">＋</span></a>
+    </header>
+
+    <main class="obsah-stranky-multi">
+        <section class="stranka-zahlavi">
+            <p class="nadpis-maly">PŘÍJMY A VÝDAJE</p>
+            <h1>Vaše transakce.</h1>
+            <p>Přidávejte záznamy, filtrujte podle měsíce a mějte přehled o každé koruně.</p>
+        </section>
+
+        <section class="souhrn-mrizka souhrn-transakce" aria-label="Souhrn vybraného měsíce">
+            <article class="souhrn-karta">
+                <span class="souhrn-ikona souhrn-modra" aria-hidden="true">↗</span>
+                <span class="souhrn-popisek">Příjmy</span>
+                <strong id="prehled-prijmy">0 Kč</strong>
+                <span class="souhrn-podtext">Za vybraný měsíc</span>
+            </article>
+            <article class="souhrn-karta">
+                <span class="souhrn-ikona souhrn-oranzova" aria-hidden="true">↘</span>
+                <span class="souhrn-popisek">Výdaje</span>
+                <strong id="prehled-vydaje">0 Kč</strong>
+                <span class="souhrn-podtext">Za vybraný měsíc</span>
+            </article>
+            <article class="souhrn-karta">
+                <span class="souhrn-ikona souhrn-zelena" aria-hidden="true">＝</span>
+                <span class="souhrn-popisek">Zůstatek</span>
+                <strong id="prehled-zustatek">0 Kč</strong>
+                <span class="souhrn-podtext" id="zbyva-popis">Příjmy minus výdaje</span>
+            </article>
+            <article class="souhrn-karta">
+                <span class="souhrn-ikona souhrn-fialova" aria-hidden="true">✳</span>
+                <span class="souhrn-popisek">Míra úspor</span>
+                <strong id="prehled-uspory">0 %</strong>
+                <span class="souhrn-podtext">Z příjmů za měsíc</span>
+            </article>
+        </section>
+
+        <section class="panel transakce-cela" aria-labelledby="nadpis-vsechny-transakce">
+            <div class="panel-zahlavi transakce-stranka-hlavicka">
+                <div><h2 id="nadpis-vsechny-transakce">Seznam transakcí</h2><p id="mesic-popis">Vyberte měsíc a prohlédněte si své záznamy.</p></div>
+                <label class="mesic-vyber">Zvolit měsíc
+                    <input type="month" id="mesic">
+                </label>
+            </div>
+            <label class="hledani-transakci" for="hledat-transakci">
+                <span aria-hidden="true">⌕</span>
+                <input type="search" id="hledat-transakci" placeholder="Hledat podle názvu nebo kategorie…" autocomplete="off">
+            </label>
+            <div class="transakce-seznam transakce-seznam-cela" id="transakce-seznam"></div>
+            <p class="prazdne-transakce" id="prazdne-transakce" hidden>Žádné záznamy za vybraný měsíc. Přidejte první transakci.</p>
+        </section>
+
+        <section class="panel nova-transakce-form-panel" id="nova-transakce" aria-labelledby="nadpis-nova-transakce">
+            <div class="panel-zahlavi">
+                <div><h2 id="nadpis-nova-transakce">Přidat transakci</h2><p>Záznam se uloží do tohoto prohlížeče.</p></div>
+                <span class="panel-znak panel-znak-modry" aria-hidden="true">＋</span>
+            </div>
+            <form id="formular-transakce" class="formular-transakce">
+                <fieldset class="typ-transakce-pole">
+                    <legend>Typ záznamu</legend>
+                    <div class="volba-radky">
+                        <label class="volba-policko" for="typ-vydaj">
+                            <input id="typ-vydaj" type="radio" name="typ" value="vydaj" checked>
+                            <span>↘ Výdaj</span>
+                        </label>
+                        <label class="volba-policko" for="typ-prijem">
+                            <input id="typ-prijem" type="radio" name="typ" value="prijem">
+                            <span>↗ Příjem</span>
+                        </label>
+                    </div>
+                </fieldset>
+                <label for="nazev-transakce">Název
+                    <input id="nazev-transakce" name="nazev" type="text" maxlength="60" placeholder="Např. Nákup potravin" required>
+                </label>
+                <label for="kategorie-transakce">Kategorie
+                    <select id="kategorie-transakce" name="kategorie" required>
+                        <option value="Bydlení">Bydlení</option>
+                        <option value="Jídlo">Jídlo</option>
+                        <option value="Doprava">Doprava</option>
+                        <option value="Zdraví">Zdraví</option>
+                        <option value="Volný čas">Volný čas</option>
+                        <option value="Vzdělávání">Vzdělávání</option>
+                        <option value="Mzda">Mzda</option>
+                        <option value="Ostatní">Ostatní</option>
+                    </select>
+                </label>
+                <label for="castka-transakce">Částka
+                    <span class="vstup-suffix"><input id="castka-transakce" name="castka" type="number" min="1" step="1" placeholder="0" required><span>Kč</span></span>
+                </label>
+                <label for="datum-transakce">Datum
+                    <input id="datum-transakce" name="datum" type="date" required>
+                </label>
+                <label for="cas-transakce">Čas <span class="nepovinne">(nepovinný)</span>
+                    <input id="cas-transakce" name="cas" type="time">
+                </label>
+                <label class="opakovana-volba" for="opakovana-transakce">
+                    <input id="opakovana-transakce" name="opakovana" type="checkbox">
+                    <span>Opakovaný příjem nebo výdaj</span>
+                </label>
+                <button class="tlacitko tlacitko-spocitat" type="submit">Uložit transakci <span aria-hidden="true">→</span></button>
+                <button class="reset-transakce" type="reset">Vymazat formulář</button>
+                <p id="stav-transakce" class="formular-pozn" role="status" aria-live="polite"></p>
+            </form>
+            <p class="soukromi">Ukázkové záznamy můžete smazat tlačítkem × vedle transakce.</p>
+            <p class="formular-pozn formular-chyba" id="stav-uloziste" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <footer class="paticka">
+        <a class="znacka znacka-paticka" href="index.html"><img class="znacka-ikona" src="finance-favicon.png" alt=""><span>Finance<span class="znacka-tecka"> Alpha</span></span></a>
+        <p>Jednoduše a srozumitelně o vašich penězích.</p>
+        <span>© 2026 Finance Alpha</span>
+    </footer>
+    <script src="finance.js" defer></script>
+</body>
+</html>
